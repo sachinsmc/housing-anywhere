@@ -1,0 +1,55 @@
+definitions:
+  models.DNSRequest:
+    properties:
+      vel:
+        type: string
+      x:
+        type: string
+      "y":
+        type: string
+      z:
+        type: string
+    type: object
+  models.DNSResponse:
+    properties:
+      loc:
+        type: string
+    type: object
+  routes.HTTPError:
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /api/v1/dns/location:
+    post:
+      consumes:
+      - application/json
+      description: Calculate the location of the databank to upload gathered data
+      operationId: dns
+      parameters:
+      - description: DNS
+        in: body
+        name: dns
+        required: true
+        schema:
+          $ref: '#/definitions/models.DNSRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.DNSResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/routes.HTTPError'
+      summary: Calculate Location
+      tags:
+      - DNS
+swagger: "2.0"
