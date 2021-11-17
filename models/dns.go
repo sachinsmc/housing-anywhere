@@ -1,14 +1,12 @@
 package models
 
-type DNS struct {
-	SectorID int `json:"sector_id"`
-}
+import _ "github.com/go-playground/validator"
 
 type DNSRequest struct {
-	X        string `json:"x"`
-	Y        string `json:"y"`
-	Z        string `json:"z"`
-	Velocity string `json:"vel"`
+	X        string `json:"x" validate:"required"`
+	Y        string `json:"y" validate:"required"`
+	Z        string `json:"z" validate:"required"`
+	Velocity string `json:"vel" validate:"required"`
 }
 
 type DNSResponse struct {

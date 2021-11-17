@@ -55,6 +55,12 @@ var doc = `{
                             "$ref": "#/definitions/models.DNSResponse"
                         }
                     },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/routes.HTTPError"
+                        }
+                    },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
@@ -68,6 +74,12 @@ var doc = `{
     "definitions": {
         "models.DNSRequest": {
             "type": "object",
+            "required": [
+                "vel",
+                "x",
+                "y",
+                "z"
+            ],
             "properties": {
                 "vel": {
                     "type": "string",
