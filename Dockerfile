@@ -7,6 +7,8 @@ COPY . .
 
 RUN go mod download
 
+RUN go test ./routes
+
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -o app .
 
 
@@ -16,6 +18,9 @@ FROM alpine:latest
 WORKDIR /app
 
 COPY --from=build /go/src/ha/app .
+
+COPY ./config/config.yml ./config/config.yml
+
 
 EXPOSE 3000
 
